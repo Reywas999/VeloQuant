@@ -11,3 +11,4 @@ $$\text{Score} = \frac{\text{Total Return}}{\text{Rolling Volatility} \times \sq
 * **Walk-Forward Simulation:** Models multi-year rebalancing regimes over user-defined horizons, accurately penalizing returns for transaction friction ($0.05\%$) and executing trades using next-day opening price boundaries.
 * **Granular Verification Logs:** Provides a clean paper trail for institutional auditing by rendering scrollable ledgers of the exact extracted asset pool and historical monthly ranking changes.
 * **Active Trading Signals Desk:** Concludes by feeding raw historical backtests directly into a real-time signal monitor, outputting the specific tickers and precise portfolio allocation weights to execute on a brokerage account for the current month.
+<img width="511" height="712" alt="Screenshot 2026-06-26 180600" src="https://github.com/user-attachments/assets/c2fd72a6-5a60-443a-a188-7bc6a5fb6d08" />
