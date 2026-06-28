@@ -30,3 +30,5 @@ $$\text{Composite Score} = (w_{\text{Return}} \times \text{Rank}_{\text{Return}}
 2. **Opposing-Window Weekly Stress Testing:** Evaluates a rolling 5-trading-day window to isolate the absolute 5 worst and 5 best weeks for both strategies, forcing the opposing asset allocation to reveal its performance during those identical cross-sections of market stress.
 3. **Dedicated Category Winners:** Automatically isolates the raw top-performing variables for each core metric into independent dataframes (`engine.df_best_return`, `engine.df_best_drawdown`, `engine.df_best_sharpe`).
 4. **Data Verification Audits:** Prints an explicit count verification directly to the console logging exactly how many underlying equities were parsed, successfully processed, and evaluated.
+<img width="822" height="963" alt="Screenshot 2026-06-27 180811" src="https://github.com/user-attachments/assets/1616bf49-7c4e-4403-8cb9-48e16b807578" />
+<img width="820" height="1139" alt="Screenshot 2026-06-27 180834" src="https://github.com/user-attachments/assets/3854db53-0913-4725-95f5-a903a6f561ac" />
