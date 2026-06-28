@@ -63,3 +63,42 @@ The variance calculation engine categorizes portfolio shifts into four explicit,
 
 <img width="728" height="976" alt="Screenshot 2026-06-27 184519" src="https://github.com/user-attachments/assets/c0b74f1d-c89d-4b51-ab21-0684972583aa" />
 
+## ⚠️ Quantitative Strategy Risks, Shortcomings, and Disclaimers
+
+### **CRITICAL NOTICE: FINANCIAL DISCLAIMER**
+*This software is provided for educational, research, and informational purposes only. It does not constitute financial, investment, legal, or tax advice. No trading strategy—including momentum or trend-following regimes—can guarantee profits or eliminate the risk of severe capital loss. Past performance, especially backtested performance, is absolutely no guarantee of future live trading results. Allocate capital at your own discretion and risk.*
+
+---
+
+On paper and within a simulated environment, systematic cross-sectional momentum frameworks appear highly lucrative. In live market implementation, however, several structural, psychological, and algorithmic frictions actively degrade theoretical alpha. Anyone considering executing this strategy with real capital must fully understand the following critical shortcomings:
+
+### 1. Survivorship Bias (The "Ghost Stock" Phenomenon)
+The data collection layer in this suite extracts the *current* constituents of the broad index (e.g., the standard 503 stocks in the S&P 500 or the 101 in the Nasdaq-100) and pushes them backward through time.
+* **The Backtest Delusion:** This inadvertently creates an environment of total foresight. The strategy evaluates historical returns *only* on companies that successfully survived, grew, and remain dominant leaders today (e.g., NVIDIA, Apple, Microsoft).
+* **The Live Reality:** In a true walk-forward live environment, you would have bought companies that were massive momentum leaders in 2021, only to ride them down as they deteriorated, collapsed, faced delisting, or went completely bankrupt before being removed from the index. True survivorship-free backtesting requires expensive historical corporate actions data that free scrapers cannot provide.
+
+### 2. Execution Slippage and Market Open Friction
+The backtest engine assumes perfect, cost-free entry execution at the exact next-day Opening Price (`Open`) and exit liquidations at the exact Evening Closing Price (`Close`).
+* **The Microstructure Trap:** The first 15 to 30 minutes of the U.S. trading day (9:30 AM EST) are the most volatile, erratic, and unpredictable moments of the session. Spreads are wide, and institutional buy/sell imbalances distort fills.
+* **The Live Reality:** Manually or programmatically hitting a brokerage desk with five market or limit orders at 9:30 AM will routinely cause "bad fills" (buying slightly higher or selling slightly lower than the theoretical ticker price). Over decades, a mere $0.05 per-share slippage on monthly rebalances will compound into a massive drag on your absolute returns.
+
+### 3. Structural Tax Drag & Friction Multipliers
+Every 21 trading days, this strategy aggressively rotates capital. It liquidates losing or decaying assets and targets new high-performing positions.
+* **The Short-Term Capital Gains Hammer:** If executed within a standard taxable brokerage account, every single profitable position trim or total liquidation triggers a short-term capital gains tax event. This ordinary income tax rate drastically compounding losses and interrupts your principal account's ability to compound efficiently.
+* **The Solution Constraint:** This strategy is economically unviable in a standard brokerage account; it strictly demands execution inside a tax-advantaged vehicle (such as a Roth IRA or traditional IRA) to allow the rebalancing churn to clear without tax friction.
+
+### 4. Market Regime Shifts & The "Momentum Crash"
+Momentum is a highly cyclical premium. It works exceptionally well during prolonged, smooth, trending bull markets where capital clusters into clear winning sectors.
+* **The Rotation Tail-Risk:** Momentum strategies inherently concentrate your capital into the highest-flying, highest-beta assets in the market. When market regimes abruptly break (e.g., sudden interest rate pivots causing capital to instantly flee High-Growth Tech and rush into Defensive Value/Utilities), a concentrated momentum portfolio will crash significantly harder and faster than the broad index baseline.
+* **The Lag Latency:** Because the engine relies on a trailing 3-month (63-day) lookback to maintain trend stability and filter out daily noise, it is inherently slow to react to black swan events or sudden market reversals. You could be trapped in deteriorating assets for nearly three weeks before the math signals a complete rebalance shift.
+
+### 5. `yfinance` & Data Infrastructure Limitations
+This suite relies entirely on the open-source `yfinance` library for historical and live pricing strings.
+* **Data Inaccuracies:** Free financial data streams do not guarantee continuous institutional data cleaning. Corporate adjustments such as stock splits, reverse splits, unexpected special dividends, spin-offs, and ticker symbol re-mappings (e.g., Facebook transitioning to Meta) are occasionally handled roughly or asynchronously by free scrapers.
+* **API Inconsistencies:** `yfinance` operates via web scraping and un-vetted API mirrors. It is subject to random endpoint formatting changes, rate-limiting blocks, or complete network download timeouts during high-traffic sessions, which can break live trade calculation slips on your rebalance days.
+
+### 6. Psychological Capitulation Risk
+On a clean backtest chart, a **-30% or -40% Max Drawdown** looks like a temporary, mathematically interesting speed bump on the way to a higher final balance.
+* **The Human Element:** In a live execution workspace, watching a real $100,000 portfolio dissolve into $65,000 while financial media headlines proclaim an impending economic depression is a brutal psychological experience.
+* **The Failure Loop:** The overwhelming majority of retail investors turn off systematic strategies at the absolute depth of an underperformance cycle out of panic. By manually intervening and freezing the script during a drawdown, you lock in permanent losses and completely miss the explosive trend-following recovery vector that repairs the strategy's long-term performance curve.
+
