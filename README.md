@@ -59,3 +59,7 @@ The variance calculation engine categorizes portfolio shifts into four explicit,
 2. **🟢 NEW POSITION ENTRY:** A stock has surged to leadership rank over the trailing quarter, triggering a brand-new cash buy signal.
 3. **⚡ INCREASE POSITION:** The stock's rank or risk-profile has strengthened, requiring you to buy a specific positive fractional share delta ($+$).
 4. **📉 TRIM POSITION:** The asset remains in the momentum basket but has shifted to a lower allocation tier, requiring you to shave off a precise fraction of shares ($-$).
+
+
+<img width="728" height="976" alt="Screenshot 2026-06-27 184519" src="https://github.com/user-attachments/assets/c0b74f1d-c89d-4b51-ab21-0684972583aa" />
+
